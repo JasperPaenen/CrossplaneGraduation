@@ -1,0 +1,17 @@
+apiVersion: backup.aws.upbound.io/v1beta1
+kind: Plan
+metadata:
+  labels:
+    poc: backup
+  name: crossplane-backup-2
+spec:
+  forProvider:
+    name: crossplane-backup-2
+    region: eu-west-1
+    rule:
+      - lifecycle:
+          - deleteAfter: 14
+        ruleName: up-examplebackuprule
+        schedule: cron(0 1 * * ? *)
+        targetVaultName: crossplane-vault
+    
